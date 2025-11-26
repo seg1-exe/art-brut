@@ -1,26 +1,62 @@
-#app {
-  background-color: black;
-  height: 100vh;
+#anim-intro {
+  position: relative;
   width: 100%;
-  display: flex;
+  height: 100vh; /* ou la hauteur que tu veux pour l'intro */
+  overflow: hidden;
+  background: #000;
 }
 
-.invisible {
+.intro-media {
+  position: absolute;
+  object-fit: cover;
   opacity: 0;
+  animation: intro-appear 0.3s ease-out forwards, intro-drift 4s ease-in-out 0.3s forwards;
+  filter: brightness(1.2);
   pointer-events: none;
 }
 
-.cartel {
-  position: fixed; 
-  left: 0;
-  top: 0;
-  color: black;
-  background-color: white;
-  font-family: 'Arial', sans-serif;
-  font-size: 14px;
-  width: 20%;
-  padding: 20px;
-  text-align: justify;
-  transform: translate(-50%, -100%);
-  z-index: 1000;
+@keyframes intro-appear {
+  to {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* léger flottement / drift */
+@keyframes intro-drift {
+  from {
+    transform: translate(0, 0) scale(1.05);
+  }
+  to {
+    transform: translate(20px, -20px) scale(1.08);
+  }
+}
+
+/* Responsif – même logique que ton ancien code */
+@media (min-width: 1024px) {
+  .intro-media {
+    max-width: 25vw;
+    max-height: 25vh;
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .intro-media {
+    max-width: 35vw;
+    max-height: 35vh;
+  }
+}
+
+@media (max-width: 767px) {
+  .intro-media {
+    max-width: 45vw;
+    max-height: 45vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro-media {
+    max-width: 55vw;
+    max-height: 55vh;
+  }
 }
