@@ -1,0 +1,28 @@
+/* Responsif – même logique que ton ancien code */
+@media (min-width: 1024px) {
+  .intro-media {
+    max-width: 25vw;
+    max-height: 25vh;
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .intro-media {
+    max-width: 35vw;
+    max-height: 35vh;
+  }
+}
+
+@media (max-width: 767px) {
+  .intro-media {
+    max-width: 45vw;
+    max-height: 45vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro-media {
+    max-width: 55vw;
+    max-height: 55vh;
+  }
+}

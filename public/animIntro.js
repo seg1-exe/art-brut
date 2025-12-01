@@ -2,13 +2,13 @@
 import mediaFiles from "./mediaFiles.js";
 
 // Tempo plus rapide
-const bpm = 260; // avant 149
-const beatInterval = 60 / bpm; // durée entre spawns
+const bpm = 260;
+const beatInterval = 60 / bpm;
 
 const container = document.getElementById("anim-intro");
 
 // Paramètres responsives basés sur la largeur de la fenêtre
-let spawnCount = window.innerWidth < 768 ? 2 : 4; // + d'images par "beat"
+let spawnCount = window.innerWidth < 768 ? 2 : 4;
 const MAX_ELEMENTS = window.innerWidth < 768 ? 40 : 140;
 
 const imageFiles = mediaFiles.filter(f => /\.(jpg|jpeg|png|gif|webp)$/i.test(f));
@@ -26,8 +26,7 @@ function placeElement(el) {
   el.style.left = `${Math.random() * Math.max(0, w - elW)}px`;
   el.style.top = `${Math.random() * Math.max(0, h - elH)}px`;
 
-  // petite rotation random pour dynamiser
-  const angle = (Math.random() - 0.5) * 20; // -10° à +10°
+  const angle = (Math.random() - 0.5) * 20;
   el.style.transform = `rotate(${angle}deg) scale(1.05)`;
 }
 
@@ -52,7 +51,6 @@ function spawnImage() {
 
   container.appendChild(el);
 
-  // durée de vie un peu plus courte pour garder du rythme
   setTimeout(() => el.remove(), 6000);
 
   if (container.children.length > MAX_ELEMENTS) {
@@ -60,12 +58,11 @@ function spawnImage() {
   }
 }
 
-function startIntroLoop() {
+function startIntroLoop(onComplete) {
   if (!container) return;
 
   introRunning = true;
 
-  // spawn immédiat pour éviter le “vide”
   for (let i = 0; i < spawnCount; i++) {
     spawnImage();
   }
@@ -76,10 +73,13 @@ function startIntroLoop() {
     }
   }, beatInterval * 1000);
 
-  // ⏱️ stop au bout de 5s
+  // ⏱️ stop au bout de 5s puis callback
   setTimeout(() => {
     clearInterval(interval);
     introRunning = false;
+    if (typeof onComplete === "function") {
+      onComplete();
+    }
   }, 5000);
 }
 
@@ -87,7 +87,9 @@ window.addEventListener("resize", () => {
   spawnCount = window.innerWidth < 768 ? 2 : 4;
 });
 
-export function startAnimIntro() {
+export function startAnimIntro(onComplete) {
   if (introRunning) return;
-  startIntroLoop();
+  // au cas où il serait caché au départ
+  container.style.display = "block";
+  startIntroLoop(onComplete);
 }

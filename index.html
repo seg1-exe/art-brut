@@ -4,41 +4,68 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/reset.css">
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/layout.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
   <title>L'Art brut</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
 </head>
-  <body>
-    <div id="app">
-      <div id="anim-intro">
-
+<body>
+  <div id="app">
+    <div id="anim-intro"></div>
+    
+    <div id="mainContent">
+      
+      <div id="burgerMenu">
+        <img src="/images/menu.svg">
       </div>
-      <div id="mainContent" style="display: none;">
-        <div id="burgerMenu"></div>
-        <div id="navMenu" style="display: none;">
-          <div class="closeBtn"></div>
-          <ul class="navList">
-            <li><a>HOME</a></li>
-            <li><a>QUÈSACO ?</a></li>
+
+      <div id="navMenu">
+        <ul class="navList chelsea-market-regular">
+            <li><a href="#homepage">HOME</a></li> <li><a>QUÈSACO ?</a></li>
             <li><a>AVEC QUOI ?</a></li>
             <li><a>POUR QUI ?</a></li>
             <li><a>ET VOUS ?</a></li>
-          </ul>
-          <a>À propos & sources</a>
-        </div>
-        <div id="about" style="display: none;">
-
-        </div>
-        <div id="homepage">
-          <div class="homepageTitle">
-            <h1>ART BRUT</h1>
-            <h2>Une exposition virtuelle</h2>
+        </ul>
+        <div>
+          <div class="closeBtn">
+            <img src="/images/close.svg">
           </div>
-          <div class="hintText">
-            <p>Scrollez ou glissez latéralement pour naviguer.</p>
-          </div>
+          <a class="chelsea-market-regular">À propos & sources</a>
         </div>
       </div>
-    <script type="module" src="/main.js"></script>
-  </body>
+
+      <div id="homepage" class="panel">
+        <div class="homepageTitle">
+          <h1 class="chelsea-market-regular">ART BRUT</h1>
+          <h2 class="chelsea-market-regular">Une exposition virtuelle</h2>
+        </div>
+        <div class="hintText">
+          <p class="chelsea-market-regular">Scrollez ou glissez latéralement pour naviguer.</p>
+        </div>
+      </div>
+
+      <div id="quesaco" class="panel">
+        <h1>QUÈSACO ?</h1>
+      </div>
+      <div id="avecquoi" class="panel">
+        <h1>AVEC QUOI ?</h1>
+      </div>
+      <div id="pourqui" class="panel">
+        <h1>POUR QUI ?</h1>
+      </div>
+      <div id="etvous" class="panel">
+        <h1>ET VOUS ?</h1>
+      </div>
+      
+      </div>
+    
+    <div id="about" style="display: none;"></div>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
 </html>

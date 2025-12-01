@@ -1,9 +1,60 @@
-#anim-intro {
-  position: relative;
+*{
+  --homepage-bg : #EC1D26;
+  --homepage-text : #ffffff;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--homepage-bg);
+  overflow-x: hidden;
+}
+
+#app {
   width: 100%;
-  height: 100vh; /* ou la hauteur que tu veux pour l'intro */
+  overflow: hidden; 
+}
+
+.chelsea-market-regular {
+  font-family: "Chelsea Market", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#anim-intro {
+  position: absolute; /* Superposé au dessus */
   overflow: hidden;
-  background: #000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2000; /* Très haut pour cacher le reste au début */
+  background-color: var(--homepage-bg); /* Ou var(--homepage-bg) si vous préférez */
+}
+
+#mainContent {
+  display: flex;       
+  flex-wrap: nowrap;
+  width: 100%;        
+  height: 100vh;
+  opacity: 0; 
+  visibility: hidden;
+  cursor: grab; 
+  cursor: -webkit-grab;
+}
+
+#mainContent:active {
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+}
+
+.panel {
+  box-sizing: border-box;
+  width: 100vw;         
+  height: 100vh;        
+  flex-shrink: 0;      
+  position: relative;
+  padding-top: 80px; 
 }
 
 .intro-media {
@@ -13,6 +64,126 @@
   animation: intro-appear 0.3s ease-out forwards, intro-drift 4s ease-in-out 0.3s forwards;
   filter: brightness(1.2);
   pointer-events: none;
+}
+
+a, button, .closeBtn, #burgerMenu {
+  cursor: pointer;
+}
+
+#burgerMenu {
+  position: fixed;
+  z-index: 3001;
+}
+
+#burgerMenu, .closeBtn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+.closeBtn {
+  cursor: pointer;
+  width: 50px; 
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto; 
+}
+
+#burgerMenu img, .closeBtn img {
+  pointer-events: none;
+  width: 35px;
+  height: 35px;
+}
+
+#navMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--homepage-bg);
+  color: var(--homepage-text);
+  z-index: 3000; /* Au dessus de tout */
+  display: flex;
+  justify-content: space-between;
+  transform: translateX(-100%); 
+}
+
+#homepage{
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background-color: var(--homepage-bg);
+  color: var(--homepage-text);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.homepageTitle{
+  text-align: center;
+}
+
+.homepageTitle>h1{
+  font-size: 200px;
+  margin: 0;
+}
+
+.homepageTitle>h2{
+  font-size: 40px;
+  margin-top: 10px;
+}
+
+.hintText{
+  position: absolute;
+  bottom: 20px;
+  font-size: 20px;
+  width: 20%;
+  text-align: center;
+}
+
+.navList{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 50px;
+}
+
+#navMenu>div>a{
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  font-size: 48px;
+  width: 250px;
+  cursor: pointer;
+}
+
+.navList li a {
+  position: relative; /* Indispensable : définit le référentiel pour la barre absolue */
+  display: inline-block; /* Permet au lien de ne prendre que la largeur du texte */
+  text-decoration: none; /* Retire le soulignement par défaut s'il y en a un */
+  padding-bottom: 5px; /* Un peu d'espace entre le texte et la barre */
+  cursor: pointer;
+  font-size: 150px;
+  color: var(--homepage-text, #fff); 
+}
+
+.navList li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%; 
+  height: 10px;
+  background-color: currentColor; 
+  transition: width 0.3s ease-in-out; 
+}
+
+.navList li a:hover::after {
+  width: 100%;
+  bottom: -5px;
 }
 
 @keyframes intro-appear {
@@ -32,31 +203,4 @@
   }
 }
 
-/* Responsif – même logique que ton ancien code */
-@media (min-width: 1024px) {
-  .intro-media {
-    max-width: 25vw;
-    max-height: 25vh;
-  }
-}
 
-@media (max-width: 1023px) and (min-width: 768px) {
-  .intro-media {
-    max-width: 35vw;
-    max-height: 35vh;
-  }
-}
-
-@media (max-width: 767px) {
-  .intro-media {
-    max-width: 45vw;
-    max-height: 45vh;
-  }
-}
-
-@media (max-width: 480px) {
-  .intro-media {
-    max-width: 55vw;
-    max-height: 55vh;
-  }
-}
