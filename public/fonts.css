@@ -1,0 +1,61 @@
+/*Titre avec quoi*/
+.beth-ellen-regular {
+    font-family: "Beth Ellen", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/*Textes avec quoi*/
+.unbounded-light {
+    font-family: "Unbounded", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
+
+.unbounded-regular {
+    font-family: "Unbounded", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* cartels avec quoi*/
+.montserrat-regular {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/*Titre avec quoi Ferdinand*/
+.barrio-regular {
+    font-family: "Barrio", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/*Titre avec quoi Robillard*/
+.darumadrop-one-regular {
+    font-family: "Darumadrop One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/*Titre avec quoi Maisonneuve*/
+@font-face {
+    font-family: 'FungiFreak';
+    src: url('fonts/FungiFreak.otf') format('opentype');
+}
+
+.fungifreak-regular {
+    font-family: "FungiFreak", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.gochi-hand-regular {
+    font-family: "Gochi Hand", cursive;
+    font-weight: 400;
+    font-style: normal;
+}

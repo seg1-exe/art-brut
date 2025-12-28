@@ -4,6 +4,15 @@
     max-width: 25vw;
     max-height: 25vh;
   }
+
+  .navList li a {
+    font-size: 100px;
+  }
+
+  #navMenu>div>a{
+    font-size: 30px;
+    width: 150px;
+  }
 }
 
 @media (max-width: 1023px) and (min-width: 768px) {

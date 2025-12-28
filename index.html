@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="fr">
-  <head>
+
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/reset.css">
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/layout.css">
+  <link rel="stylesheet" href="/fonts.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
@@ -13,23 +15,31 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Observer.min.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barrio&family=Beth+Ellen&family=Darumadrop+One&family=Gochi+Hand&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Unbounded:wght@200..900&display=swap"
+    rel="stylesheet">
 </head>
+
 <body>
   <div id="app">
     <div id="anim-intro"></div>
-    
+
     <div id="mainContent">
-      
+
       <div id="burgerMenu">
         <img src="/images/menu.svg">
       </div>
 
       <div id="navMenu">
         <ul class="navList chelsea-market-regular">
-            <li><a href="#homepage">HOME</a></li> <li><a>QUÈSACO ?</a></li>
-            <li><a>AVEC QUOI ?</a></li>
-            <li><a>POUR QUI ?</a></li>
-            <li><a>ET VOUS ?</a></li>
+          <li><a href="#homepage">HOME</a></li>
+          <li><a>QUÈSACO ?</a></li>
+          <li><a>AVEC QUOI ?</a></li>
+          <li><a>POUR QUI ?</a></li>
+          <li><a>ET VOUS ?</a></li>
         </ul>
         <div>
           <div class="closeBtn">
@@ -52,8 +62,99 @@
       <div id="quesaco" class="panel">
         <h1>QUÈSACO ?</h1>
       </div>
-      <div id="avecquoi" class="panel">
-        <h1>AVEC QUOI ?</h1>
+      <div id="avecquoi-intro" class="panel">
+        <div class="avecquoi-intro">
+          <img src="/images/avec-quoi/anim-intro.gif">
+          <div class="avecquoi-intro-title">
+            <h2 class="beth-ellen-regular">L'art brut</h2>
+            <h1 class="beth-ellen-regular"><span style="color: #0E4515;">avec</span> <span
+                style="color: #B80000;">quoi</span> <span style="color: #218189;">?</span></h1>
+          </div>
+          <div class="avecquoi-intro-text">
+            <p class="unbounded-regular">Et si la matière pauvre était la vraie richesse ? Ici, les œuvres ne sont pas
+              jugées sur la
+              sophistication ou la technique académique, mais sur la force de l’invention, la poésie de la matière et la
+              liberté du geste.</p>
+            <p class="unbounded-light">L’inclusion de certaines œuvres peut sembler discutable : la maladie mentale d’un
+              artiste, le fait de
+              créer dans l’ombre, ou l’usage de matériaux inhabituels semblent parfois suffire à légitimer l’œuvre. Mais
+              le message central est clair : la créativité transcende la matière et les conventions esthétiques.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="avecquoi-robillard" class="panel">
+        <div class="scroll-fusil">
+          <div class="fusil-container">
+            <img src="/images/avec-quoi/Fusil1.png" class="fusil">
+            <img src="/images/avec-quoi/Fusil2.png" class="fusil">
+            <img src="/images/avec-quoi/Fusil3.png" class="fusil">
+            <img src="/images/avec-quoi/Fusil4.png" class="fusil">
+            <img src="/images/avec-quoi/Fusil5.png" class="fusil">
+          </div>
+        </div>
+        <div class="andrerobillard avecquoi-artistes">
+          <img id="boom-robillard" src="/images/avec-quoi/Boom.gif" alt="gif d'une explosion">
+          <div>
+            <h2 class="darumadrop-one-regular">André Robillard</h2>
+            <h3 class="darumadrop-one-regular">1931 - ...</h3>
+            <p class="unbounded-light">Robillard transforme des objets métalliques en armes imaginaires, symbolisant la
+              transfiguration créative
+              de matériaux utilitaires ou abandonnés.</p>
+            <img src="/images/avec-quoi/andrerobillard.png" alt="photo d'André Robillard">
+            <p class="montserrat-regular"><strong>André Robillard</strong>, Fusils de récupération, années 1960 </p>
+          </div>
+          <img id="bandeau-robillard" src="/images/avec-quoi/bandeau.png" alt="bandeau de séparation tricolore">
+        </div>
+      </div>
+
+      <div id="avecquoi-maisonneuve" class="panel">
+        <video autoplay loop muted>
+          <source src="/images/avec-quoi/watertexture.mp4">
+        </video>
+        <div class="maisonneuve avecquoi-artistes">
+          <div>
+            <h2 class="fungifreak-regular">Pascal Désiré Maisonneuve</h2>
+            <h3 class="gochi-hand-regular">1863 - 1934</h3>
+          </div>
+          <img src="/images/avec-quoi/Maisonneuve.png" alt="photo de Pascal Désiré Maisonneuve">
+          <div class="maisonneuve-oeuvres">
+            <img src="/images/avec-quoi/masque1.png" data-title="Tête aux larges oreilles"
+              data-date="Entre 1927 et 1928" data-desc="Assemblage de coquillages, 41 x 57 x 26 cm.">
+
+            <img src="/images/avec-quoi/masque2.png" data-title="Sans titre" data-date="Entre 1927 et 1928"
+              data-desc="Assemblage de coquillages.">
+
+            <img src="/images/avec-quoi/masque3.png" data-title="Le Tartare" data-date="Entre 1927 et 1928"
+              data-desc="Assemblage de coquillages, 18 x 17 x 12 cm.">
+
+            <img src="/images/avec-quoi/masque4.png" data-title="Le Diable" data-date="entre 1927 et 1928"
+              data-desc="Assemblage de coquillages, 25 x 22 x 19 cm.">
+          </div>
+          <p class="unbounded-light">Maisonneuve utilise des coquillages et objets naturels pour créer des visages
+            expressifs. L’œuvre illustre
+            comment un matériau simple et quotidien peut devenir porteur de sens et d’émotion.</p>
+        </div>
+        <div class="perles-container">
+          <img class="perle" src="/images/avec-quoi/perle.png">
+        </div>
+      </div>
+
+      <div id="avecquoi-cheval" class="panel">
+        <div class="ferdinandcheval avecquoi-artistes">
+          <div>
+            <img src="/images/avec-quoi/palais1.png">
+            <div>
+              <img src="/images/avec-quoi/palais2.png">
+              <img src="/images/avec-quoi/ferdinandcheval.png">
+            </div>
+          </div>
+          <div>
+            <h2 class="barrio-regular">FERDINAND CHEVAL</h2>
+            <h3 class="barrio-regular">1836 - 1924</h3>
+            <img src="/images/avec-quoi/palais3.png">
+          </div>
+        </div>
       </div>
       <div id="pourqui" class="panel">
         <h1>POUR QUI ?</h1>
@@ -61,11 +162,12 @@
       <div id="etvous" class="panel">
         <h1>ET VOUS ?</h1>
       </div>
-      
-      </div>
-    
+
+    </div>
+
     <div id="about" style="display: none;"></div>
   </div>
   <script type="module" src="/main.js"></script>
 </body>
+
 </html>
