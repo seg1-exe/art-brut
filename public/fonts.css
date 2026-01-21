@@ -59,3 +59,11 @@
     font-weight: 400;
     font-style: normal;
 }
+
+/*POLICE POUR QUI*/
+.plus-jakarta-sans-extra-bold {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+}

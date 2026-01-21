@@ -9,6 +9,8 @@ body {
   padding: 0;
   background-color: var(--homepage-bg);
   overflow-x: hidden;
+  -moz-osx-font-smoothing: auto;
+  -webkit-font-smoothing: auto;
 }
 
 #app {
@@ -24,26 +26,21 @@ body {
 
 #anim-intro {
   position: absolute;
-  /* Superposé au dessus */
   overflow: hidden;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 2000;
-  /* Très haut pour cacher le reste au début */
   background-color: var(--homepage-bg);
-  /* Ou var(--homepage-bg) si vous préférez */
 }
 
-/* On s'assure que le conteneur gère bien la 3D pour la fluidité */
 #mainContent {
   position: relative;
   width: 100%;
   height: 100vh;
   overflow: hidden;
   background-color: var(--homepage-bg);
-  /* Couleur de fond de sécurité */
 }
 
 .panel {
@@ -59,16 +56,11 @@ body {
   background-color: var(--homepage-bg);
   will-change: transform;
   backface-visibility: hidden;
-  /* overflow: hidden;  <-- REMOVED to allow pearls to overlap next panel */
   overflow: visible;
 }
 
 #quesaco {
   background-color: #D91C24;
-}
-
-[id^="avecquoi"] {
-  background-color: #C11B22;
 }
 
 #pourqui {
@@ -138,7 +130,6 @@ button,
   background-color: var(--homepage-bg);
   color: var(--homepage-text);
   z-index: 3000;
-  /* Au dessus de tout */
   display: flex;
   justify-content: space-between;
   transform: translateX(-100%);
@@ -199,13 +190,9 @@ button,
 
 .navList li a {
   position: relative;
-  /* Indispensable : définit le référentiel pour la barre absolue */
   display: inline-block;
-  /* Permet au lien de ne prendre que la largeur du texte */
   text-decoration: none;
-  /* Retire le soulignement par défaut s'il y en a un */
   padding-bottom: 5px;
-  /* Un peu d'espace entre le texte et la barre */
   cursor: pointer;
   font-size: 150px;
   color: var(--homepage-text, #fff);
@@ -234,7 +221,6 @@ button,
   }
 }
 
-/* léger flottement / drift */
 @keyframes intro-drift {
   from {
     transform: translate(0, 0) scale(1.05);
@@ -312,7 +298,6 @@ button,
 .avecquoi-artistes {
   height: 100%;
   width: 100%;
-  /* Adapts to thpanele  width */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -333,20 +318,16 @@ button,
   pointer-events: none;
 }
 
-/* Le conteneur qui va bouger verticalement */
 .fusil-container {
   display: flex;
   flex-direction: column;
-  /* Empile les fusils verticalement */
   align-items: center;
-  /* Pas de hauteur définie, elle dépend du contenu */
 }
 
 .fusil {
   height: 25vh;
   width: auto;
   margin: 20px 0;
-  /* Un peu d'espace entre chaque fusil */
   display: block;
 }
 
@@ -373,7 +354,7 @@ button,
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-right: 50px;
+  padding-right: 70px;
 }
 
 .andrerobillard>div>h2 {
@@ -397,7 +378,7 @@ button,
 .andrerobillard>div>img {
   width: 50%;
   align-self: flex-end;
-  margin-right: -30px;
+  margin-right: -40px;
 }
 
 .andrerobillard>div>p.montserrat-regular {
@@ -467,9 +448,7 @@ button,
   width: 250px;
   cursor: pointer;
   z-index: 50;
-  /* Ensure high z-index */
   position: absolute;
-  /* Force absolute context if not inherited */
   pointer-events: auto;
 }
 
@@ -541,7 +520,6 @@ button,
   color: #000;
   max-width: 250px;
   box-shadow: 4px 4px 0 #000;
-  /* removing default transform as GSAP handles it via x/y */
   display: none;
 }
 
@@ -574,9 +552,7 @@ button,
   height: 100%;
   z-index: 1;
   display: flex;
-  /* Flexbox pour mettre les deux grosses colonnes côte à côte */
   flex-wrap: wrap;
-  /* On empêche le retour à la ligne */
 }
 
 /* --- STYLE COMMUN AUX DEUX GRANDES COLONNES (GAUCHE / DROITE) --- */
@@ -587,7 +563,13 @@ button,
   overflow: hidden;
 }
 
-/* Ensure Maisonneuve panel is above Cheval panel for pearls to show */
+.ferdinandcheval>div {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
 #avecquoi-maisonneuve {
   z-index: 10;
 }
@@ -602,7 +584,6 @@ button,
 .ferdinandcheval>div:first-child {
   display: flex;
   flex-direction: column;
-  /* Empile l'image du haut et le bloc du bas */
 }
 
 /* 1. L'image du haut (Palais 1) - Prend 50% de la hauteur */
@@ -610,7 +591,6 @@ button,
   width: 100%;
   height: 50%;
   object-fit: cover;
-  /* Remplit l'espace sans déformation */
   display: block;
 }
 
@@ -619,31 +599,24 @@ button,
   display: flex;
   width: 100%;
   height: 50%;
-  /* Optionnel : ajoute un micro espace entre les images */
-  /* gap: 2px; */
 }
 
 /* --- Style partagé pour les deux images du bas --- */
 .ferdinandcheval>div:first-child>div>img {
   height: 100%;
-  /* Force la hauteur à 100% du conteneur parent */
   display: block;
   object-fit: cover;
-  /* CRUCIAL : C'est ce qui permet aux images de se comporter "pareil" */
 }
 
 /* Image Palais 2 (Gauche) */
 .ferdinandcheval>div:first-child>div>img:first-child {
   width: 65%;
-  /* Ajusté selon la maquette (plus large que le portrait) */
 }
 
 /* Image Ferdinand Cheval (Droite) */
 .ferdinandcheval>div:first-child>div>img:last-child {
   width: 35%;
-  /* Prend le reste de la largeur */
 
-  /* Cadrage intelligent : on priorise le haut de l'image (le visage) */
   object-position: top center;
 
 }
@@ -659,17 +632,13 @@ button,
   align-items: center;
   text-align: center;
   background-color: #000;
-  /* Fond noir conforme à la maquette */
   color: #fff;
-  /* Texte blanc */
   padding: 20px;
-  /* Un peu d'espace interne */
 }
 
 /* Style des titres (Barrio) */
 .barrio-regular {
   font-family: 'Barrio', cursive, sans-serif;
-  /* Assurez-vous d'avoir importé la font */
   text-transform: uppercase;
   margin: 0;
   line-height: 1.2;
@@ -677,7 +646,6 @@ button,
 
 .ferdinandcheval h2.barrio-regular {
   font-size: 3vw;
-  /* Taille responsive */
   margin-bottom: 10px;
 }
 
@@ -692,6 +660,60 @@ button,
   max-width: 80%;
   max-height: 60%;
   object-fit: contain;
-  /* L'image entière reste visible */
   display: block;
+}
+
+
+
+
+
+/*POUR QUI*/
+#pourqui-intro {
+  background-image: url('images/pour-qui/introBG.png');
+  background-size: cover;
+  background-position: center;
+}
+
+#pourqui-intro h1 {
+  font-size: 100px;
+  -webkit-text-stroke: 10px #000000;
+  paint-order: stroke fill;
+  letter-spacing: 2px;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+}
+
+#pourqui-intro>p:first-of-type {
+  font-size: 20px;
+  text-align: left;
+  width: 30%;
+  position: absolute;
+  left: 10%;
+  top: 30%;
+}
+
+#pourqui-intro>p:nth-of-type(2) {
+  font-size: 20px;
+  text-align: left;
+  width: 25%;
+  position: absolute;
+  right: 8%;
+  bottom: 15%;
+  rotate: -22deg;
+}
+
+#pourqui-intro>img {
+  width: 40%;
+  position: absolute;
+}
+
+#pourqui-intro>img:first-of-type {
+  top: 40%;
+  left: 20%;
+}
+
+#pourqui-intro>img:nth-of-type(2) {
+  bottom: 25%;
+  right: 30%;
 }
