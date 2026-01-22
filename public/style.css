@@ -24,6 +24,7 @@ body {
   font-style: normal;
 }
 
+
 #anim-intro {
   position: absolute;
   overflow: hidden;
@@ -404,7 +405,14 @@ button,
 
 /*MAISONNEUVE*/
 
-#avecquoi-maisonneuve>video {
+#avecquoi-maisonneuve {
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+  background-color: transparent !important;
+}
+
+#avecquoi-maisonneuve>.layer-texture-bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -414,13 +422,36 @@ button,
   z-index: 0;
 }
 
+.layer-texture-gray {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
 .maisonneuve {
   position: absolute;
-  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.maisonneuve-oeuvres,
+.maisonneuve-text,
+.artist-photo,
+.description-text {
+  pointer-events: auto;
 }
 
 .maisonneuve>div:first-child {
   position: absolute;
+  z-index: 15;
   top: 50px;
   left: 30px;
 }
@@ -437,73 +468,74 @@ button,
   text-align: left;
 }
 
+.maisonneuve>.layer-overlay-blue {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 10;
+  pointer-events: none;
+}
+
 .maisonneuve>img {
-  width: 150px;
+  width: 200px;
   position: absolute;
   bottom: 10px;
   left: 30px;
 }
 
 .maisonneuve-oeuvres>img {
+  position: absolute;
   width: 250px;
   cursor: pointer;
-  z-index: 50;
-  position: absolute;
-  pointer-events: auto;
+  z-index: 2;
+  transition: transform 0.3s ease;
 }
 
-.maisonneuve-oeuvres>img:first-child {
-  position: absolute;
+.maisonneuve-oeuvres>img:nth-child(1) {
   top: 150px;
   left: 150px;
 }
 
 .maisonneuve-oeuvres>img:nth-child(2) {
-  position: absolute;
   left: 350px;
-  bottom: 0px;
+  bottom: 200px;
 }
 
 .maisonneuve-oeuvres>img:nth-child(3) {
-  position: absolute;
-  right: 400px;
-  bottom: 170px;
-}
-
-.maisonneuve-oeuvres>img:nth-child(4) {
-  position: absolute;
-  right: 50px;
-  top: 100px;
+  right: 600px;
+  bottom: 400px;
 }
 
 .maisonneuve>p {
   font-size: 20px;
   color: #EEEEEE;
   text-align: right;
-  width: 50%;
+  width: 40%;
   position: absolute;
-  right: 30px;
+  right: 300px;
+  bottom: 50px;
+}
+
+.maisonneuve-text {
+  position: absolute;
+  z-index: 15;
+}
+
+.maisonneuve-text {
+  top: 50px;
+  left: 30px;
+}
+
+.maisonneuve>.description-text {
   bottom: 30px;
-}
-
-.perles-container {
-  position: absolute;
-  top: 0;
-  right: -9vw;
-  width: 16vw;
-  height: 100%;
-  z-index: 100;
-  pointer-events: none;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-}
-
-.perle {
-  width: auto;
-  height: auto;
-  display: block;
-  pointer-events: none;
+  right: 11%;
+  z-index: 15;
+  width: 40%;
+  text-align: right;
+  color: #fff;
 }
 
 /* Tooltip Styling */
@@ -542,8 +574,35 @@ button,
   line-height: 1.3;
 }
 
-
 /* --- CONTENEUR PRINCIPAL FERDINAND CHEVAL --- */
+#avecquoi-cheval {
+  z-index: 5;
+  width: 100%;
+  /* Largeur personnalisée */
+  height: 100vh;
+  position: absolute;
+  top: 0;
+
+
+  /* IMPORTANT : Pour que le fond jaune aille sous la vague bleue de Maisonneuve */
+  overflow: visible;
+}
+
+/* --- LE FOND QUI DÉBORDE (GIF) --- */
+#avecquoi-cheval>.bg-video-cheval {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+
+  /* Étirement vers la gauche pour la transition vague */
+  width: 130vw;
+  left: -30vw;
+  pointer-events: none;
+}
+
+/* --- CONTENEUR DE CONTENU --- */
 .ferdinandcheval {
   position: absolute;
   top: 0;
@@ -551,121 +610,515 @@ button,
   width: 100%;
   height: 100%;
   z-index: 1;
+}
+
+/* --- TITRES --- */
+.cheval-text {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
 }
 
-/* --- STYLE COMMUN AUX DEUX GRANDES COLONNES (GAUCHE / DROITE) --- */
-.ferdinandcheval>div {
-  width: 50%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
+.cheval-title-group h2 {
+  font-family: 'Barrio', cursive;
+  font-size: 8vh;
+  color: #D91C24;
+  margin: 0;
+  line-height: 0.9;
+  white-space: nowrap;
+  /* Empêche le titre de se couper */
 }
 
-.ferdinandcheval>div {
-  width: 50%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
+.cheval-title-group h3 {
+  font-family: 'Barrio', cursive;
+  font-size: 3vh;
+  color: #D91C24;
+  margin-top: 10px;
 }
 
-#avecquoi-maisonneuve {
+/* --- DESCRIPTION --- */
+.cheval-desc {
+  position: absolute;
+  top: 5%;
+  right: 10%;
+  width: 20%;
+  font-size: 1.4vh;
+  color: #ffffff;
+  text-align: right;
   z-index: 10;
 }
 
-#avecquoi-cheval {
-  z-index: 5;
-}
-
-/* =========================================
-   COLONNE DE GAUCHE (Les Images)
-   ========================================= */
-.ferdinandcheval>div:first-child {
-  display: flex;
-  flex-direction: column;
-}
-
-/* 1. L'image du haut (Palais 1) - Prend 50% de la hauteur */
-.ferdinandcheval>div:first-child>img {
+/* --- COLLAGE DES IMAGES --- */
+.cheval-collage {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  height: 50%;
-  object-fit: cover;
-  display: block;
-}
-
-/* 2. Le conteneur du bas (Palais 2 + Portrait) - Prend les autres 50% */
-.ferdinandcheval>div:first-child>div {
-  display: flex;
-  width: 100%;
-  height: 50%;
-}
-
-/* --- Style partagé pour les deux images du bas --- */
-.ferdinandcheval>div:first-child>div>img {
   height: 100%;
-  display: block;
+  pointer-events: none;
+}
+
+.cheval-collage img {
+  position: absolute;
+  bottom: 0;
+  object-fit: contain;
+}
+
+/* 1. Grand Palais (Gauche) */
+.palais-1 {
+  left: 2%;
+  height: 85%;
+  width: auto;
+  z-index: 3;
+}
+
+/* 2. Palais Milieu (Réintégré) */
+.palais-2 {
+  left: 20%;
+  /* Juste après le premier */
+  height: 75%;
+  width: auto;
+  z-index: 2;
+  /* Derrière le premier */
+}
+
+/* 3. Détail Palais (Droite arrière-plan) */
+.palais-3 {
+  right: 0%;
+  height: 70%;
+  width: auto;
+  z-index: 3;
+}
+
+/* 4. Portrait (Tout à droite) */
+.cheval-portrait {
+  left: 47%;
+  top: 5%;
+  height: 70%;
+  /* Prend toute la hauteur */
+  width: auto;
+  z-index: 0;
+  /* Au premier plan */
+}
+
+/* --- JUDITH SCOTT PANEL --- */
+#avecquoi-scott {
+  z-index: 6;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  overflow: visible;
+}
+
+/* Texture de fond */
+.scott-bg {
+  position: absolute;
+  top: 0;
+  left: -10vw;
+  width: 120vw;
+  height: 100%;
   object-fit: cover;
+  z-index: 0;
 }
 
-/* Image Palais 2 (Gauche) */
-.ferdinandcheval>div:first-child>div>img:first-child {
-  width: 65%;
+/* Bordure déchirée */
+.scott-edge {
+  position: absolute;
+  top: 0;
+  left: -10vw;
+  height: 100%;
+  width: auto;
+  z-index: 2;
+  pointer-events: none;
 }
 
-/* Image Ferdinand Cheval (Droite) */
-.ferdinandcheval>div:first-child>div>img:last-child {
-  width: 35%;
-
-  object-position: top center;
-
+/* --- LE CENTRE (Texte Fixe) --- */
+.scott-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Parfaitement centré */
+  z-index: 10;
+  /* Niveau de référence */
+  text-align: center;
+  width: 50%;
+  pointer-events: none;
 }
 
+.scott-center h2 {
+  font-size: 6vw;
+  color: #FFBD2D;
+  margin: 0;
+  font-family: 'Chelsea Market', cursive;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+}
 
-/* =========================================
-   COLONNE DE DROITE (Textes + Palais 3)
-   ========================================= */
-.ferdinandcheval>div:last-child {
+.scott-center h3 {
+  font-size: 1.5vw;
+  color: #FFBD2D;
+  margin-bottom: 20px;
+}
+
+.red-border-box {
+  border: 4px solid #D91C24;
+  padding: 2vw;
+  background: rgba(0, 0, 0, 0.4);
+  /* Un peu plus sombre pour le contraste */
+  backdrop-filter: blur(4px);
+  box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+.red-border-box p {
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* --- LE CAROUSEL (Conteneur) --- */
+.scott-carousel-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+  /* Coupe les images qui sortent de l'écran */
+}
+
+.scott-carousel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* --- LES IMAGES (Les satellites) --- */
+.scott-item {
+  position: absolute;
+
+  /* POINT DE DÉPART : PILE AU CENTRE (sous le texte) */
+  top: 50%;
+  left: 50%;
+
+  height: 20vh;
+  /* Ajustez la taille ici */
+  width: auto;
+
+  cursor: pointer;
+  pointer-events: auto;
+
+  /* Ombre pour l'effet 3D */
+  filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
+
+  /* Optimisation perf */
+  will-change: transform, z-index;
+}
+
+/* Style au survol */
+.scott-item.hovered {
+  filter: drop-shadow(0 0 15px #FFBD2D);
+  /* On gère le scale via JS pour ne pas casser la position */
+  z-index: 100 !important;
+}
+
+/* --- HASSAN PANEL --- */
+#avecquoi-hassan {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  z-index: 7;
+  /* Au-dessus de Scott */
+  overflow: hidden;
+  background-color: #000;
+  /* Fond noir si la vidéo charge mal */
+}
+
+/* --- BACKGROUND VIDEO (Vimeo) --- */
+.video-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* Empêche de cliquer sur la vidéo */
+  z-index: 0;
+  overflow: hidden;
+}
+
+.video-wrapper iframe {
+  /* Astuce pour simuler object-fit: cover sur une iframe */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 56.25vw;
+  /* Ratio 16:9 (100 * 9 / 16) */
+  min-height: 100vh;
+  min-width: 177.77vh;
+  /* Ratio 16:9 inverse (100 * 16 / 9) */
+  transform: translate(-50%, -50%);
+}
+
+/* --- TRANSITIONS (Bords) --- */
+.hassan-edge-left {
+  position: absolute;
+  top: 0;
+  left: -1px;
+  height: 100%;
+  width: auto;
+  /* Ou une largeur fixe genre 5vw */
+  z-index: 2;
+}
+
+.hassan-edge-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 20px;
+  /* La petite bande rouge à droite */
+  background-color: #D91C24;
+  z-index: 2;
+}
+
+/* --- CONTENU --- */
+.hassan-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  padding: 5vh 5vw;
+  /* Marges intérieures */
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-color: #000;
-  color: #fff;
-  padding: 20px;
 }
 
-/* Style des titres (Barrio) */
-.barrio-regular {
-  font-family: 'Barrio', cursive, sans-serif;
-  text-transform: uppercase;
-  margin: 0;
-  line-height: 1.2;
+/* --- LA GRILLE D'ŒUVRES --- */
+.hassan-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 colonnes */
+  grid-template-rows: repeat(2, 1fr);
+  /* 2 lignes */
+  gap: 3vw;
+  /* Espacement horizontal */
+  row-gap: 5vh;
+  /* Espacement vertical */
+  width: 90%;
+  margin: 0 auto;
+  /* Centré */
 }
 
-.ferdinandcheval h2.barrio-regular {
-  font-size: 3vw;
+.hassan-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.3s ease;
+}
+
+.hassan-item:hover {
+  transform: scale(1.05);
+  /* Petit zoom au survol */
+}
+
+.hassan-item img {
+  width: 100%;
+  height: 20vh;
+  /* Hauteur fixe pour uniformiser */
+  object-fit: cover;
+  /* Ou 'contain' si tu veux voir tout le bois */
   margin-bottom: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+  /* Ombre portée */
 }
 
-.ferdinandcheval h3.barrio-regular {
-  font-size: 1.5vw;
-  margin-bottom: 30px;
-  font-weight: normal;
+/* --- LÉGENDES --- */
+.hassan-caption {
+  color: #fff;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  /* Ombre pour lire sur la vidéo */
+  background: rgba(0, 0, 0, 0.3);
+  /* Petit fond sombre optionnel pour lisibilité */
+  padding: 5px;
+  border-radius: 4px;
 }
 
-/* Image Palais 3 (Droite) */
-.ferdinandcheval>div:last-child img {
-  max-width: 80%;
-  max-height: 60%;
+.hassan-caption strong {
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* --- TITRE ARTISTE --- */
+.hassan-title {
+  position: absolute;
+  bottom: 30px;
+  right: 50px;
+  text-align: right;
+  color: #fff;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.hassan-title h2 {
+  font-size: 60px;
+  margin: 0;
+}
+
+.hassan-title h3 {
+  font-size: 20px;
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* --- MICHEL NEDJAR PANEL --- */
+#avecquoi-nedjar {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  z-index: 8;
+  /* Au-dessus de Hassan */
+  background-color: #228B93;
+  /* Bleu canard de la maquette */
+  overflow: hidden;
+}
+
+/* --- TRANSITION GAUCHE --- */
+.nedjar-border-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 30px;
+  /* Dégradé ou bandes pour rappeler le panel Hassan */
+  background: linear-gradient(to right, #F7B500 33%, #D91C24 33%, #D91C24 66%, #000 66%);
+  z-index: 2;
+}
+
+/* --- DÉCORATION FOND --- */
+.nedjar-bg-deco {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.6;
+  /* Ajuster selon l'image */
+  pointer-events: none;
+}
+
+/* --- TEXTES --- */
+.nedjar-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+  /* Laisse passer la souris pour les poupées */
+}
+
+.nedjar-header {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+}
+
+.nedjar-header h1 {
+  color: #D91C24;
+  /* Rouge */
+  font-size: 80px;
+  margin: 0;
+}
+
+.nedjar-header h3 {
+  color: #D91C24;
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.nedjar-desc {
+  position: absolute;
+  bottom: 50px;
+  left: 10%;
+  width: 35%;
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* --- L'ARTISTE --- */
+.nedjar-artist {
+  position: absolute;
+  bottom: 0;
+  right: 25%;
+  /* Ajuster la position */
+  height: 60vh;
+  width: auto;
+  z-index: 4;
+  /* Derrière les poupées mais devant le fond */
+  filter: grayscale(10%) contrast(1.1);
+}
+
+/* --- SYSTÈME DE POUPÉES (Swing) --- */
+.doll-wrapper {
+  position: absolute;
+  top: -50px;
+  /* On commence hors écran pour cacher l'accroche */
+  width: 190px;
+  /* Largeur de la zone de pendule */
+  /* height est défini dans le HTML pour varier la longueur */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  cursor: grab;
+  transform-origin: top center;
+}
+
+/* La ficelle */
+.string {
+  width: 2px;
+  background-color: #003300;
+  /* Vert très foncé ou noir */
+  flex-grow: 1;
+  /* Prend toute la hauteur disponible jusqu'à la poupée */
+}
+
+/* L'image de la poupée */
+.doll {
+  width: 100%;
+  height: auto;
   object-fit: contain;
-  display: block;
+  filter: drop-shadow(5px 10px 10px rgba(0, 0, 0, 0.4));
 }
 
+/* Ajoute un léger mouvement aléatoire au chargement pour faire vivant (optionnel) */
+.doll-wrapper:nth-child(odd) {
+  transform: rotate(2deg);
+}
 
-
-
+.doll-wrapper:nth-child(even) {
+  transform: rotate(-1deg);
+}
 
 /*POUR QUI*/
 #pourqui-intro {
