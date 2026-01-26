@@ -1289,6 +1289,7 @@ button,
 
 #pourqui-corbaz>img:nth-of-type(2) {
   position: relative;
+  height: 100%;
   left: 10%;
 }
 
@@ -1315,6 +1316,7 @@ button,
 #pourqui-corbaz>img:nth-of-type(3) {
   position: relative;
   left: -10%;
+  height: 100%;
 }
 
 /*LESAGE*/
@@ -1337,6 +1339,7 @@ button,
 #pourqui-lesage>img:nth-of-type(2) {
   position: relative;
   left: 5%;
+  height: 100%;
 }
 
 #pourqui-lesage>h1 {
@@ -1414,10 +1417,44 @@ button,
     font-size: 14px !important;
   }
 
+  .maisonneuve-oeuvres>img:nth-child(2) {
+    bottom: 0;
+  }
+
+  .maisonneuve-oeuvres>img:nth-child(3) {
+    right: 400px;
+    bottom: 200px;
+  }
+
+  .maisonneuve>.description-text {
+    bottom: 15px;
+  }
+
+  .palais-3 {
+    right: 5%;
+  }
+
+  .cheval-desc {
+    font-size: 3vh;
+  }
+
+  .doll-wrapper {
+    top: 10px;
+    width: 150px;
+  }
+
+  #pourqui-intro>p:nth-of-type(2) {
+    bottom: 21%;
+  }
+
   /* 3. Section "POUR QUI" (Tes textes en colonne/flex) */
   #pourqui-dubuffet {
     font-size: 24px;
     /* On réduit la base pour la lisibilité */
+  }
+
+  #pourqui-dubuffet>img:first-of-type {
+    left: 0;
   }
 
   #pourqui-dubuffet>p:first-of-type,
@@ -1432,23 +1469,40 @@ button,
     /* Image de Dubuffet moins imposante */
   }
 
+  #pourqui-dubuffet>p:first-of-type {
+    left: 0;
+    bottom: -30%;
+  }
+
+  #pourqui-dubuffet>p:nth-of-type(2) {
+    left: -2%;
+  }
+
   /* 4. Gestion de la collection Lausanne */
   #pourqui-collection-title,
   #pourqui-outro>h2 {
-    font-size: 40px !important;
+    font-size: 32px !important;
     /* 60px est trop grand pour un 13 pouces */
-    width: 600px;
+    width: 500px !important;
   }
 
   #pourqui-collection .collection-text div h1 {
     font-size: 45px !important;
   }
 
+  #pourqui-collection>img:first-of-type {
+    height: 100%;
+  }
+
+  #pourqui-collection>img {
+    height: 70%;
+  }
+
   /* 5. Sections Corbaz et Lesage */
   #pourqui-corbaz>h1,
   #pourqui-lesage>h1 {
     font-size: 80px !important;
-    top: -20%;
+    left: 0;
   }
 
   #pourqui-corbaz>p,
