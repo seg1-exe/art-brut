@@ -1,5 +1,5 @@
 * {
-  --homepage-bg: #EC1D26;
+  --homepage-bg: #B31B1B;
   --homepage-text: #ffffff;
 }
 
@@ -7,7 +7,6 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--homepage-bg);
   overflow-x: hidden;
   -moz-osx-font-smoothing: auto;
   -webkit-font-smoothing: auto;
@@ -54,22 +53,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--homepage-bg);
   will-change: transform;
   backface-visibility: hidden;
   overflow: visible;
-}
-
-#quesaco {
-  background-color: #D91C24;
-}
-
-#pourqui {
-  background-color: #A6181F;
-}
-
-#etvous {
-  background-color: #8E151C;
 }
 
 #mainContent:active {
@@ -1129,7 +1115,6 @@ button,
 
 #pourqui-intro h1 {
   font-size: 100px;
-  -webkit-text-stroke: 10px #000000;
   paint-order: stroke fill;
   letter-spacing: 2px;
   position: absolute;
@@ -1169,4 +1154,232 @@ button,
 #pourqui-intro>img:nth-of-type(2) {
   bottom: 25%;
   right: 30%;
+}
+
+
+/*DUBUFFET*/
+#pourqui-dubuffet {
+  width: 230vw;
+  flex-direction: row;
+  color: #C3E93D;
+  font-size: 32px;
+  text-align: center;
+}
+
+#pourqui-dubuffet>img:first-of-type {
+  position: relative;
+  left: 170px;
+  top: -15%;
+  height: 90%;
+  transform: rotate(-14deg) translate(0, 0);
+  transition: transform 0.5s ease-in-out;
+}
+
+#pourqui-dubuffet>p:first-of-type {
+  position: relative;
+  width: 600px;
+  left: 7%;
+  bottom: -35%;
+  flex-shrink: 0;
+}
+
+#pourqui-dubuffet>img:first-of-type:hover {
+  transform: rotate(0deg) translateY(15%);
+}
+
+#pourqui-dubuffet>img:nth-of-type(2) {
+  position: relative;
+  left: 3%;
+  top: -30%;
+  width: 600px;
+}
+
+#pourqui-dubuffet>img:nth-of-type(3) {
+  position: relative;
+  left: -7%;
+  bottom: -30%;
+}
+
+#pourqui-dubuffet>img:nth-of-type(4) {
+  position: relative;
+  left: -7%;
+  top: -30%;
+}
+
+#pourqui-dubuffet>div {
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  left: -3%;
+}
+
+#pourqui-dubuffet>div>img {
+  width: 550px;
+}
+
+#pourqui-dubuffet>div>p {
+  width: 900px;
+}
+
+#pourqui-dubuffet>p:nth-of-type(2) {
+  position: relative;
+  left: -4%;
+  width: 500px;
+  flex-shrink: 0;
+  bottom: -30%;
+}
+
+
+/*COLLECTION LAUSANNE*/
+#pourqui-collection {
+  width: 200vw;
+  flex-direction: row;
+  color: #FFFF;
+  background-color: #202A34;
+  font-size: 24px;
+  text-align: center;
+}
+
+#pourqui-collection>.collection-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  width: 95%;
+  height: 90%;
+}
+
+#pourqui-collection>.collection-text>div>h1 {
+  color: #C3E93D;
+  font-size: 60px;
+  padding: 10px;
+}
+
+#pourqui-collection>img {
+  height: 100%;
+}
+
+#pourqui-collection>h2 {
+  width: 700px;
+  text-align: left;
+  flex-shrink: 0;
+  font-size: 60px;
+  padding: 20px;
+}
+
+/*CORBAZ*/
+#pourqui-corbaz {
+  width: 190vw;
+  background-color: #202A34;
+  flex-direction: row;
+  font-size: 24px;
+  color: #FFF;
+}
+
+#pourqui-corbaz>img:first-of-type {
+  position: absolute;
+  height: 90%;
+  width: 95%;
+  z-index: 1000;
+}
+
+#pourqui-corbaz>img:nth-of-type(2) {
+  position: relative;
+  left: 10%;
+}
+
+#pourqui-corbaz>h1 {
+  position: relative;
+  color: #C3E93D;
+  font-size: 120px;
+  left: -10%;
+  top: -30%;
+  width: auto;
+  flex-shrink: 0;
+}
+
+#pourqui-corbaz>p {
+  width: 700px;
+  position: relative;
+  left: -20%;
+  top: -10%;
+  text-align: left;
+  flex-shrink: 0;
+  padding: 20px;
+}
+
+#pourqui-corbaz>img:nth-of-type(3) {
+  position: relative;
+  left: -10%;
+}
+
+/*LESAGE*/
+#pourqui-lesage {
+  width: 200vw;
+  flex-direction: row;
+  color: #FFFF;
+  background-color: #202A34;
+  font-size: 24px;
+  text-align: center;
+}
+
+#pourqui-lesage>img:first-of-type {
+  position: absolute;
+  height: 90%;
+  width: 95%;
+  z-index: 1000;
+}
+
+#pourqui-lesage>img:nth-of-type(2) {
+  position: relative;
+  left: 5%;
+}
+
+#pourqui-lesage>h1 {
+  position: relative;
+  color: #C3E93D;
+  font-size: 120px;
+  left: -5%;
+  top: -30%;
+  width: auto;
+  flex-shrink: 0;
+}
+
+#pourqui-lesage>p {
+  width: 700px;
+  position: relative;
+  left: -20%;
+  top: -10%;
+  text-align: left;
+  flex-shrink: 0;
+  padding: 20px;
+}
+
+#pourqui-lesage>img:nth-of-type(3) {
+  position: relative;
+  height: 100%;
+  left: -5%;
+}
+
+/*OUTRO*/
+#pourqui-outro {
+  width: 150vw;
+  flex-direction: row;
+  color: #FFFF;
+  background-color: #202A34;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding: 50px;
+}
+
+#pourqui-outro>h2 {
+  width: 1200px;
+  text-align: left;
+  flex-shrink: 0;
+  font-size: 60px;
+  padding: 20px;
 }
