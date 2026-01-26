@@ -1383,3 +1383,108 @@ button,
   font-size: 60px;
   padding: 20px;
 }
+
+/* Media Query pour Laptops (écrans classiques et MacBook) */
+@media screen and (max-width: 1440px) {
+
+  /* 1. Ajustement des titres massifs pour éviter l'étouffement */
+  .homepageTitle>h1,
+  .navList li a {
+    font-size: 100px !important;
+    /* Réduction du titre principal */
+  }
+
+  .homepageTitle>h2 {
+    font-size: 30px !important;
+  }
+
+  /* 2. Section "AVEC QUOI" - Correction des textes */
+  .avecquoi-intro-title>h1 {
+    font-size: 90px !important;
+  }
+
+  .avecquoi-intro-title>h2 {
+    font-size: 50px !important;
+    left: -40px;
+  }
+
+  .avecquoi-intro-text>.unbounded-regular,
+  .avecquoi-intro-text>.unbounded-light {
+    width: 42%;
+    font-size: 14px !important;
+  }
+
+  /* 3. Section "POUR QUI" (Tes textes en colonne/flex) */
+  #pourqui-dubuffet {
+    font-size: 24px;
+    /* On réduit la base pour la lisibilité */
+  }
+
+  #pourqui-dubuffet>p:first-of-type,
+  #pourqui-dubuffet>p:nth-of-type(2),
+  #pourqui-dubuffet>div>p {
+    width: 450px;
+    /* On réduit la largeur des blocs de texte */
+  }
+
+  #pourqui-dubuffet>img:nth-of-type(2) {
+    width: 400px;
+    /* Image de Dubuffet moins imposante */
+  }
+
+  /* 4. Gestion de la collection Lausanne */
+  #pourqui-collection-title,
+  #pourqui-outro>h2 {
+    font-size: 40px !important;
+    /* 60px est trop grand pour un 13 pouces */
+    width: 600px;
+  }
+
+  #pourqui-collection .collection-text div h1 {
+    font-size: 45px !important;
+  }
+
+  /* 5. Sections Corbaz et Lesage */
+  #pourqui-corbaz>h1,
+  #pourqui-lesage>h1 {
+    font-size: 80px !important;
+    top: -20%;
+  }
+
+  #pourqui-corbaz>p,
+  #pourqui-lesage>p {
+    width: 500px;
+    font-size: 20px;
+  }
+
+  /* 6. Ajustement des images de fond et éléments fixes */
+  .cheval-title-group h2 {
+    font-size: 6vh;
+  }
+
+  .red-border-box p {
+    font-size: 0.9rem;
+  }
+
+  .hassan-grid {
+    gap: 2vw;
+    width: 95%;
+  }
+}
+
+/* Optionnel : Correction pour les petits laptops (1024px à 1280px) */
+@media screen and (max-width: 1280px) {
+  #pourqui-dubuffet {
+    width: 280vw;
+    /* On élargit un peu le scroll horizontal pour ne pas tasser les éléments */
+  }
+
+  .nedjar-header h1 {
+    font-size: 60px;
+  }
+
+  .nedjar-desc {
+    width: 45%;
+    font-size: 0.95rem;
+  }
+}
