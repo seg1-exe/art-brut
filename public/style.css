@@ -41,6 +41,8 @@ body {
   height: 100vh;
   overflow: hidden;
   background-color: var(--homepage-bg);
+  touch-action: none;
+  user-select: none;
 }
 
 .panel {
@@ -1385,6 +1387,206 @@ button,
   flex-shrink: 0;
   font-size: 60px;
   padding: 20px;
+}
+
+#quesaco-intro {
+  background-image: url('/images/quesaco/bg.png');
+  color: #FFF;
+}
+
+#quesaco-intro>h1 {
+  font-size: 150px;
+}
+
+#quesaco-mots {
+  background-color: #ABABAB;
+  display: flex;
+  flex-direction: row;
+  width: 200vw;
+}
+
+#quesaco-mots>img {
+  position: absolute;
+}
+
+#quesaco-mots>img:first-of-type {
+  left: 0;
+  bottom: 0;
+}
+
+#quesaco-mots>img:nth-of-type(2) {
+  left: 5%;
+  top: 2%;
+}
+
+#quesaco-mots>img:nth-of-type(3) {
+  left: 40%;
+  top: 20%;
+}
+
+#quesaco-mots>img:nth-of-type(4) {
+  right: 10%;
+  top: 5%;
+}
+
+#quesaco-mots>img:nth-of-type(5) {
+  left: 40%;
+  bottom: 2%;
+  rotate: -5deg;
+}
+
+#quesaco-mots>img:nth-of-type(6) {
+  right: 0;
+  bottom: 2%;
+}
+
+#quesaco-ref {
+  background-color: #202A34;
+  flex-direction: row;
+  width: 150vw;
+}
+
+#quesaco-ref>img {
+  position: relative;
+}
+
+#quesaco-ref>img:first-of-type {
+  left: 0;
+  bottom: 0;
+  height: 100%;
+}
+
+#quesaco-ref>img:nth-of-type(2) {
+  left: -5%;
+  top: -25%;
+}
+
+#quesaco-ref>img:nth-of-type(3) {
+  left: -10%;
+  bottom: -20%;
+}
+
+#quesaco-ref>img:nth-of-type(4) {
+  left: -10%;
+  top: 0;
+  height: 100%;
+}
+
+#quesaco-ref>img:nth-of-type(5) {
+  left: -13%;
+  bottom: -10%;
+}
+
+#quesaco-ref>img:nth-of-type(6) {
+  right: 15%;
+  top: -8%;
+  z-index: -1;
+}
+
+#quesaco-ref>p {
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+  text-align: left;
+  flex-shrink: 0;
+  padding: 20px;
+  color: #FFF;
+}
+
+#quesaco-bulles {
+  background-color: #202A34;
+  flex-direction: row;
+  width: 200vw;
+}
+
+#quesaco-bulles>img {
+  position: absolute;
+}
+
+#quesaco-bulles>img:first-of-type {
+  left: 0;
+  top: 2%;
+}
+
+#quesaco-bulles>img:nth-of-type(2) {
+  right: 2%;
+  top: 2%;
+}
+
+#quesaco-bulles>img:nth-of-type(3) {
+  left: 0;
+  bottom: 5%;
+}
+
+#quesaco-bulles>img:nth-of-type(4) {
+  right: 30%;
+  top: 30%;
+}
+
+#quesaco-bulles>img:nth-of-type(5) {
+  left: 40%;
+  bottom: 2%;
+  rotate: -5deg;
+}
+
+#quesaco-bulles>img:nth-of-type(6) {
+  right: 2%;
+  bottom: 2%;
+}
+
+#quesaco-emblematiques {
+  background-color: #202A34;
+  flex-direction: row;
+  width: 300vw;
+  color: #FFF;
+  font-size: 24px;
+}
+
+#quesaco-emblematiques>h2 {
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  font-size: 150px;
+}
+
+#quesaco-emblematiques>img:first-of-type {
+  width: 100%;
+  height: 80%;
+  position: absolute;
+  align-self: center;
+  z-index: -3;
+}
+
+#quesaco-emblematiques>p {
+  margin: 0 60px 50vh 30px;
+  font-style: italic;
+}
+
+#about {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--homepage-bg);
+  z-index: 4000;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0;
+  padding-left: 50px;
+
+  /* On force le centrage vertical et horizontal */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  text-align: left;
+}
+
+#about p {
+  font-size: 32px;
+  max-width: 800px;
 }
 
 /* Media Query pour Laptops (écrans classiques et MacBook) */

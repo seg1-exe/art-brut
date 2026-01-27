@@ -9,25 +9,136 @@ const navMenu = document.getElementById('navMenu');
 const closeBtn = document.querySelector('#navMenu .closeBtn');
 const burgerSVG = document.querySelector('#burgerMenu img');
 
+// On récupère les panels
 const panels = gsap.utils.toArray(".panel");
 
+// VARIABLES GLOBALES (bien à l'extérieur)
+window.globalTargetX = 0; // On le met sur window pour pouvoir tester dans la console
+let wrapWidthValue = 0;
+let panelDataArray = [];
+
 function setupApp() {
+    console.log("App Ready");
     gsap.set(animIntro, { display: 'none' });
+
+    // 1. On initialise les données
     setupInfiniteLoop();
 
-    const tl = gsap.timeline();
-
-    tl.to(mainContent, {
-        autoAlpha: 1,
-        duration: 0.1
-    });
-
+    // 2. On active le reste
     setupFusils();
     setupMenuToggle();
     setupMaskHover();
     setupScott();
     setupNedjar();
+    setupNavigation();
+
+    gsap.to(mainContent, { autoAlpha: 1, duration: 0.1 });
 }
+
+function setupInfiniteLoop() {
+    if (panels.length === 0) return;
+
+    const ease = 0.08;
+    let currentX = 0;
+
+    // Calcul des positions de départ
+    let totalWidth = 0;
+    panelDataArray = panels.map((panel, i) => {
+        // On force le panel en absolute et top 0
+        gsap.set(panel, { position: "absolute", top: 0, left: 0 });
+
+        const widthVW = (panel.offsetWidth / window.innerWidth) * 100;
+        const data = {
+            element: panel,
+            id: panel.id,
+            width: widthVW,
+            startPos: totalWidth
+        };
+        totalWidth += widthVW;
+        return data;
+    });
+
+    wrapWidthValue = totalWidth;
+    console.log("Total width calculée :", wrapWidthValue);
+
+    // LA BOUCLE DE RENDU
+    gsap.ticker.add(() => {
+        // On utilise window.globalTargetX pour être sûr de lire la globale
+        const diff = window.globalTargetX - currentX;
+
+        if (Math.abs(diff) > 0.001) {
+            currentX += diff * ease;
+
+            panelDataArray.forEach((p) => {
+                let xPos = (p.startPos + currentX) % wrapWidthValue;
+
+                // Boucle infinie
+                if (xPos < -p.width) xPos += wrapWidthValue;
+                if (xPos > wrapWidthValue - p.width) xPos -= wrapWidthValue;
+
+                // Centrage relatif au viewport
+                if (xPos > (wrapWidthValue / 2)) xPos -= wrapWidthValue;
+                if (xPos < -(wrapWidthValue / 2)) xPos += wrapWidthValue;
+
+                gsap.set(p.element, { x: xPos + "vw" });
+            });
+        }
+    });
+
+    // SCROLL
+    Observer.create({
+        target: window,
+        type: "wheel,touch,pointer",
+        onChange: (self) => {
+            const delta = self.deltaY || self.deltaX;
+            window.globalTargetX -= delta * 0.1; // Vitesse de scroll
+        }
+    });
+}
+
+function setupNavigation() {
+    const navLinks = document.querySelectorAll('.navList a');
+    const aboutBtn = document.querySelector('#navMenu > div > a');
+    const aboutDiv = document.getElementById('about');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+                const targetId = href.replace('#', '');
+
+                // CORRECTION : On cherche le panel exact
+                const targetPanel = panelDataArray.find(p => p.id === targetId);
+
+                if (targetPanel) {
+                    console.log("Navigation vers :", targetId);
+                    window.globalTargetX = -targetPanel.startPos;
+                } else {
+                    console.warn("Panel non trouvé pour l'ID :", targetId);
+                }
+            }
+        });
+    });
+
+    // À PROPOS
+    if (aboutBtn && aboutDiv) {
+        aboutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            gsap.set(aboutDiv, { display: 'flex' });
+            gsap.to(aboutDiv, { autoAlpha: 1, duration: 0.5 });
+        });
+
+        aboutDiv.addEventListener('click', () => {
+            gsap.to(aboutDiv, {
+                autoAlpha: 0, duration: 0.5, onComplete: () => {
+                    gsap.set(aboutDiv, { display: 'none' });
+                }
+            });
+        });
+    }
+}
+
 
 function setupMaskHover() {
     let tooltip = document.getElementById('mask-tooltip');
@@ -90,103 +201,6 @@ function setupMaskHover() {
                 overwrite: "auto"
             });
         });
-    });
-}
-
-function setupInfiniteLoop() {
-    if (panels.length === 0) return;
-
-    // CONFIGURATION
-    const scrollSpeed = 0.1;
-    const dragSpeed = 0.25;
-    const ease = 0.08;
-
-    let currentX = 0;
-    let targetX = 0;
-
-    // 1. CALCUL DES LARGEURS (Variable Width Logic)
-    // On stocke la largeur (en vw) et la position de départ de chaque panel
-    let totalWidth = 0;
-    const panelData = panels.map(panel => {
-        // On récupère la largeur du panel en pixels et on convertit en VW
-        // (Largeur px / Largeur fenêtre) * 100
-        const widthVW = (panel.offsetWidth / window.innerWidth) * 100;
-
-        const data = {
-            element: panel,
-            width: widthVW,
-            startPos: totalWidth // Sa position théorique (0, 100, 200, 368...)
-        };
-
-        totalWidth += widthVW;
-        return data;
-    });
-
-    // La taille totale de la boucle
-    const wrapWidth = totalWidth;
-
-    // 2. BOUCLE D'ANIMATION
-    gsap.ticker.add(() => {
-        const diff = targetX - currentX;
-        if (Math.abs(diff) < 0.01) return;
-
-        currentX += diff * ease;
-
-        panelData.forEach((p, i) => {
-            // Position de base calculée dynamiquement
-            // On ajoute le mouvement global (currentX)
-            let xPos = (p.startPos + currentX) % wrapWidth;
-
-            // Gestion du modulo pour les nombres négatifs (scroll gauche)
-            if (xPos < -p.width) {
-                // Si le panel est entièrement sorti à gauche, on le renvoie au bout à droite
-                xPos += wrapWidth;
-            } else if (xPos > wrapWidth - p.width) {
-                // Si on scrolle trop à droite (optionnel selon le sens de la boucle)
-                xPos -= wrapWidth;
-            }
-
-            // Correction spécifique : Si un panel est très large, le modulo simple peut créer un saut visuel
-            // On s'assure que xPos reste cohérent par rapport au viewport
-            if (xPos > (wrapWidth / 2)) {
-                xPos -= wrapWidth;
-            } else if (xPos < -(wrapWidth / 2)) {
-                xPos += wrapWidth;
-            }
-
-            // IMPORTANT : On utilise 'x' (vw) et non plus 'xPercent'
-            // car xPercent est relatif à la taille de l'élément lui-même (qui varie maintenant)
-            gsap.set(p.element, { x: xPos + "vw", xPercent: 0 });
-        });
-    });
-
-    // 3. GESTION SCROLL & DRAG (Identique à avant, juste adapté pour targetX)
-    Observer.create({
-        target: window,
-        type: "wheel,touch,pointer",
-        onChange: (self) => {
-            const velocity = self.deltaY !== 0 ? self.deltaY : self.deltaX;
-            targetX -= velocity * scrollSpeed;
-        }
-    });
-
-    const proxy = document.createElement("div");
-    Draggable.create(proxy, {
-        trigger: "#mainContent",
-        type: "x",
-        inertia: true,
-        onPress: function () {
-            gsap.killTweensOf(targetX);
-        },
-        onDrag: function () {
-            // On convertit les pixels dragués en VW pour rester cohérent
-            const dragInVW = (this.deltaX / window.innerWidth) * 100;
-            targetX += dragInVW * dragSpeed;
-        },
-        onThrowUpdate: function () {
-            const dragInVW = (this.deltaX / window.innerWidth) * 100;
-            targetX += dragInVW * dragSpeed;
-        }
     });
 }
 
