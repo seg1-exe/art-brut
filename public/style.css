@@ -1726,6 +1726,54 @@ button,
     gap: 2vw;
     width: 95%;
   }
+
+  #quesaco-mots>img {
+    width: 800px;
+  }
+
+  #quesaco-mots>img:nth-of-type(3) {
+    left: 30%;
+  }
+
+  #quesaco-mots>img:nth-of-type(5) {
+    left: 30%;
+  }
+
+  #quesaco-mots>img:nth-of-type(6) {
+    right: 10%;
+    z-index: 10000;
+  }
+
+  #quesaco-mots>img:nth-of-type(4) {
+    right: 20%;
+    z-index: 10000;
+  }
+
+  #quesaco-ref>img {
+    width: 400px;
+    height: auto !important;
+  }
+
+  #quesaco-ref>p {
+    right: 0;
+  }
+
+  #quesaco-bulles>img {
+    height: 250px;
+  }
+
+  #quesaco-bulles>img:nth-of-type(6) {
+    bottom: 25%;
+    rotate: 25deg;
+  }
+
+  #quesaco-emblematiques>h2 {
+    font-size: 100px;
+  }
+
+  #quesaco-emblematiques>img {
+    height: 400px;
+  }
 }
 
 /* Optionnel : Correction pour les petits laptops (1024px à 1280px) */
