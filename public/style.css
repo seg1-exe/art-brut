@@ -1589,6 +1589,15 @@ button,
   max-width: 800px;
 }
 
+#pourqui-intro h1 {
+  height: 70px;
+  top: 15%;
+}
+
+#pourqui-intro>img {
+  width: 57%;
+}
+
 /* Media Query pour Laptops (écrans classiques et MacBook) */
 @media screen and (max-width: 1440px) {
 
