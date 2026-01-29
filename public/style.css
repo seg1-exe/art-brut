@@ -1590,12 +1590,11 @@ button,
 }
 
 #pourqui-intro h1 {
-  height: 70px;
-  top: 15%;
+  font-size: 70px;
 }
 
 #pourqui-intro>img {
-  width: 57%;
+  width: 45%;
 }
 
 /* Media Query pour Laptops (écrans classiques et MacBook) */
