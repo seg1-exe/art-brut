@@ -1591,10 +1591,11 @@ button,
 
 #pourqui-intro h1 {
   font-size: 70px;
+  top: 15%;
 }
 
 #pourqui-intro>img {
-  width: 45%;
+  width: 57%;
 }
 
 /* Media Query pour Laptops (écrans classiques et MacBook) */
